@@ -4,16 +4,16 @@ function selectOptionCategory(htmlId, categoryId) {
         url: 'http://localhost:8080/categorys', // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {
             let contentSelect = `<select  class="form-select" id="classIdSelect">
-                                    <option value="">Chọn lớp</option>`;
+                                    <option value="">Chọn danh mục</option>`;
             let categorys = data;
             categorys.forEach((category) => {
-                
+                contentSelect += `<option value="${category.id}" ${category.id == categoryId ? 'selected' : ''}>${category.name}</option>`
             });
+            contentSelect += "</select>"
+            $(`#${htmlId}`).html(contentSelect);   
         },
         error: function (error) {
-            // Hàm này được gọi khi có lỗi trong quá trình gửi yêu cầu hoặc nhận phản hồi.
-            // Biến 'error' chứa thông tin về lỗi, bạn có thể xử lý lỗi ở đây hoặc thông báo cho người dùng.
-        }
+        }   
     });
 
 }

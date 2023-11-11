@@ -5,7 +5,7 @@ function viewDetail(id) {
         success: function (data) {
             let product = data;
 
-            $("#image_detail").attr("src", `data:image/jpeg;base64,${product.image}`);
+            $("#image_detail").attr("src", `${product.image}`);
             $("#id_detail").text(product.id);
             $("#title_detail").text(product.title);
             $("#price_detail").text(product.price);
