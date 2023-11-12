@@ -18,7 +18,6 @@ $("#form-add-product").submit(async function (event) {
         image = await getBase64(files[0]);
     }
    
-    
     const product = {
         title: title,
         price: price,
@@ -42,6 +41,7 @@ $("#form-add-product").submit(async function (event) {
         success: function () {
             $("#modal_add_product").modal("hide");
             displayProducts();
+            $("input").val('');
             $(".toast_create").toast("show");
         },
         error: function (error) {
@@ -52,4 +52,14 @@ $("#form-add-product").submit(async function (event) {
             debugger;
         }
     });
+})
+
+
+
+$("#btn_add_cancel").click(function(event) {
+    debugger
+    // Khi hủy thì những giấu đỏ xẽ bị xóa.
+    $("input").val('');
+    debugger
+    $('[id^=error-add-]').text("");
 })

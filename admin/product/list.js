@@ -1,11 +1,29 @@
-function displayProducts() {
+function displayProducts(page) {
+    searchOptionCategory("select_option_search");
+
+    const title = $("#title_search").val();
+    let category_id = $("#category_id_search").val();
+    if (category_id == undefined) {
+        category_id = "";
+    }
+    let product = {
+        title: title,
+    }
+    const result_search = new URLSearchParams(product).toString();
+    debugger
+
     $.ajax({
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
-        url: 'http://localhost:8080/products', // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
+        url: `http://localhost:8080/products?page=${page}&${result_search}&categoryId=${category_id }`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {
-            let tableContent = ``;
+            // Phân trang.
+            let totalPage = data.totalPages;
+            let number = data.number;
+            pagination(totalPage, number);
+            debugger;
+            // Hiển thị product.
             let products = data.content;
-            // data:image/jpeg;base64,
+            let tableContent = ``;
             products.forEach((product, index) => {
                 tableContent += `<tr><th scope="row">${index + 1}</th>
                                     <td>${product.title}</td>
