@@ -1,3 +1,8 @@
 .text_error {
     font-size: 12px;
 }
+.orange-bg {
+    background-color: #EE4D2D;  /* Màu đỏ cam của Shopee */
+    color: #ffffff; /* Màu chữ trắng để tăng độ tương phản */
+    padding: 20px; /* Thêm padding nếu cần */
+}
