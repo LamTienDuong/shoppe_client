@@ -37,7 +37,7 @@ $("#form-add-product").submit(async function (event) {
         },
         type: 'POST', 
         data: JSON.stringify(product), 
-        url: 'http://localhost:8080/products', // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
+        url: 'http://localhost:8081/products', // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function () {
             $("#modal_add_product").modal("hide");
             displayProducts();

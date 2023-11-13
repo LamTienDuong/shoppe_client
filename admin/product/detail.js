@@ -1,7 +1,7 @@
 function viewDetail(id) {
     $.ajax({
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
-        url: `http://localhost:8080/products/${id}`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
+        url: `http://localhost:8081/products/${id}`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {
             let product = data;
 
