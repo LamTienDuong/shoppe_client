@@ -18,7 +18,6 @@ $("#form-add-product").submit(async function (event) {
         image = await getBase64(files[0]);
     }
    
-    
     const product = {
         title: title,
         price: price,
@@ -38,10 +37,11 @@ $("#form-add-product").submit(async function (event) {
         },
         type: 'POST', 
         data: JSON.stringify(product), 
-        url: 'http://localhost:8080/products', // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
+        url: `http://localhost:${localStorage.getItem('port')}/products`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function () {
             $("#modal_add_product").modal("hide");
             displayProducts();
+            $("input").val('');
             $(".toast_create").toast("show");
         },
         error: function (error) {
@@ -52,4 +52,14 @@ $("#form-add-product").submit(async function (event) {
             debugger;
         }
     });
+})
+
+
+
+$("#btn_add_cancel").click(function(event) {
+    debugger
+    // Khi hủy thì những giấu đỏ xẽ bị xóa.
+    $("input").val('');
+    debugger
+    $('[id^=error-add-]').text("");
 })
