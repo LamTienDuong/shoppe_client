@@ -14,11 +14,7 @@ function displayProducts(page) {
 
     $.ajax({
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
-<<<<<<< Updated upstream
         url: `http://localhost:8080/products?page=${page}&${result_search}&categoryId=${category_id }`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
-=======
-        url: 'http://localhost:8081/products', // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
->>>>>>> Stashed changes
         success: function (data) {
             // Phân trang.
             let totalPage = data.totalPages;
