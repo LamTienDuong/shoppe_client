@@ -8,7 +8,7 @@ function comfirmDeleteProduct(id, name) {
 function deleteProduct() {
     $.ajax({
         type: 'DELETE', 
-        url: `http://localhost:8080/products/${idProduct}`, 
+        url: `http://localhost:${localStorage.getItem('port')}/products/${idProduct}`, 
         success: function (data) {
             $("#modal_delete_product").modal("hide");
             displayProducts();

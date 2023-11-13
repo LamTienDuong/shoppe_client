@@ -10,58 +10,75 @@
     <title>Quản trị</title>
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 d-flex orange-bg p-0">
+                <ul class="list-group list-group-flush orange-bg">
+                    <li class="list-group-item orange-bg p-4 fs-5">BẢNG ĐIỀU KHIỂN</li>
+                    <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-brands fa-product-hunt"></i> Quản lý sản phẩm</a></li>
+                    <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-solid fa-bookmark"></i> Thống kê sản phẩm</a></li>
+                    <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-solid fa-users"></i> Quản lý khách hàng</a></li>
+                    <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-solid fa-chart-simple"></i> Thống kê đơn hàng</a></li>
+                    <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-regular fa-circle-question"></i> Hỏi đáp</a></li>
+                </ul>
+            </div>
+            <div class="col-10">
+                <div class="container-fluid">
+                    <h2>Danh sách sản phẩm</h2>
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-2">
+                            <input id="title_search" type="text" class="form-control" placeholder="Tìm theo tên">
+                        </div>
+                        <div class="col-2">
+                            <div id="select_option_search"></div>
+                        </div>
+                        <div class="col-1">
+                            <button class="btn btn-secondary" onclick="displayProducts()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <div class="col-2 ">
+                            <button class="btn btn-success"  id="btn_add_product"
+                                data-bs-toggle="modal" data-bs-target="#modal_add_product">Thêm mới</button>
+                        </div>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Giá nhập</th>
+                            <th scope="col">Giá bán</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Danh mục</th>
+                        </tr>
+                        </thead>
+                        <tbody id="productList_content">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Lê Văn Sỹ</td>
+                            <td>25/01/2003</td>
+                            <td>Nam</td>
+                            <td>1500000</td>
+                            <td>0942896469</td>
+                            <td>Sale-marketing</td>
+                            <td>
+                                <button type="button" class="btn btn-info">Chỉnh sửa</button>
+                                <button type="button" class="btn btn-warning">Chi tiết</button>
+                                <button type="button" class="btn btn-danger">Xóa</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div id="pagination_admin">
+                    </div>
+                </div>
+            </div>
+        </div>
+       
     
-    <!-- Bảng sản phẩm -->
-    <div class="container">
-        <h2>Danh sách sản phẩm</h2>
-        <div class="row d-flex justify-content-end">
-            <div class="col-2">
-                <input id="title_search" type="text" class="form-control" placeholder="Tìm theo tên">
-            </div>
-            <div class="col-2">
-                <div id="select_option_search"></div>
-            </div>
-            <div class="col-1">
-                <button class="btn btn-secondary" onclick="displayProducts()"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-            <div class="col-2 ">
-                <button class="btn btn-success"  id="btn_add_product"
-                    data-bs-toggle="modal" data-bs-target="#modal_add_product">Thêm mới</button>
-            </div>
-        </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Giá nhập</th>
-                <th scope="col">Giá bán</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Danh mục</th>
-            </tr>
-            </thead>
-            <tbody id="productList_content">
-            <tr>
-                <th scope="row">1</th>
-                <td>Lê Văn Sỹ</td>
-                <td>25/01/2003</td>
-                <td>Nam</td>
-                <td>1500000</td>
-                <td>0942896469</td>
-                <td>Sale-marketing</td>
-                <td>
-                    <button type="button" class="btn btn-info">Chỉnh sửa</button>
-                    <button type="button" class="btn btn-warning">Chi tiết</button>
-                    <button type="button" class="btn btn-danger">Xóa</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div id="pagination_admin">
-        </div>
     </div>
-
+    <!-- Bảng sản phẩm -->
+  
     <!-- Modal thêm mới và toast thành công -->
     <div class="modal fade" id="modal_add_product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
