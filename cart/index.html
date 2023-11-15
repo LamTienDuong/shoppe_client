@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox Control</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <label><input type="checkbox" class="item" /> Item 1</label>
+  <label><input type="checkbox" class="item" /> Item 2</label>
+  <label><input type="checkbox" class="item" /> Item 3</label>
+  <label><input type="checkbox" class="item" /> Item 4</label>
+  <label><input type="checkbox" class="item" /> Item 5</label>
+
+  <hr>
+
+  <label><input type="checkbox" id="all" /> Select All</label>
+
+  <script>
+    $(document).ready(function() {
+      // Sự kiện change của checkbox có class là "item"
+      $('.item').change(function() {
+        // Kiểm tra nếu tất cả các checkbox có class "item" đều được chọn
+        if ($('.item:checked').length === $('.item').length) {
+          // Chọn checkbox có id là "all"
+          $('#all').prop('checked', true);
+        } else {
+          // Bỏ chọn checkbox có id là "all"
+          $('#all').prop('checked', false);
+        }
+      });
+
+      // Sự kiện change của checkbox có id là "all"
+      $('#all').change(function() {
+        // Nếu checkbox có id là "all" được chọn
+        if ($(this).prop('checked')) {
+          // Chọn tất cả các checkbox có class "item"
+          $('.item').prop('checked', true);
+        } else {
+          // Bỏ chọn tất cả các checkbox có class "item"
+          $('.item').prop('checked', false);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
