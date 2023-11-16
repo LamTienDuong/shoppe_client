@@ -1,7 +1,7 @@
-function selectOptionCategory(htmlId, categoryId, option = '') {
+function selectOptionCategory(htmlId) {
     $.ajax({
         type: "GET", // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
-        url: "http://localhost:8081/categorys", // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
+        url: `http://localhost:${localStorage.getItem('port')}/categorys`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (categorys) {
           //200-299
           let contentSelect = `<li class="list-group-item">
@@ -12,8 +12,8 @@ function selectOptionCategory(htmlId, categoryId, option = '') {
           categorys.forEach((category) => {
             contentSelect += `
             <li class="list-group-item">
-                <input class="form-check-input" type="checkbox" value="">
-                <label class="form-check-label ">${category.name}</label>
+                <input class="form-check-input" id="search-name${category.id}" type="checkbox" name="category" value="${category.id}">
+                <label class="form-check-label" for="search-name${category.id}">${category.name}</label>
             </li>
             `;
           });

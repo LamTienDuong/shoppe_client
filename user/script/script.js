@@ -1,3 +1,3 @@
 $(document).ready(function () {
-    displayProducts(url);
+    searchByNameProduct();
 });
