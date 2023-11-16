@@ -7,6 +7,9 @@ function comfirmDeleteProduct(id, name) {
 
 function deleteProduct() {
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+        },
         type: 'DELETE', 
         url: `http://localhost:${localStorage.getItem('port')}/products/${idProduct}`, 
         success: function (data) {

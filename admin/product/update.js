@@ -4,6 +4,9 @@ function comfirmUpdateProduct(id) {
     idUpdate = id;
     $('[id^=error-update-]').text("");
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+        },
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
         url: `http://localhost:${localStorage.getItem('port')}/products/${id}`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {
@@ -57,7 +60,7 @@ async function updateProduct() {
         },
         type: 'PUT', 
         data: JSON.stringify(product), 
-        url: `http://localhost:8080/products/${idUpdate}`, 
+        url: `http://localhost:${localStorage.getItem('port')}/products/${idUpdate}`, 
         success: function () {
             $("#modal_update_product").modal("hide");
             displayProducts();

@@ -1,5 +1,8 @@
 function viewDetail(id) {
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+        },
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
         url: `http://localhost:${localStorage.getItem('port')}/products/${id}`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {

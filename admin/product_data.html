@@ -8,46 +8,44 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css_admin/style.css">
-    <title>Thống kê đơn hàng</title>
+    <style>
+        .category_chart {
+            width: 550px;
+            height: 500px;
+            margin-top: 30px;
+            margin-left: 100px;
+        }
+    </style>
+    <title>Thống kê danh mục sản phẩm</title>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2 d-flex orange-bg p-0">
+            <div class="col-2 d-flex orange-bg p-0" style="height: 800px;">
                 <ul class="list-group list-group-flush orange-bg">
                     <li class="list-group-item orange-bg p-4 fs-5">BẢNG ĐIỀU KHIỂN</li>
                     <li class="list-group-item orange-bg"><a class="page-link" href="index.html"><i class="fa-brands fa-product-hunt"></i> Quản lý sản phẩm</a></li>
-                    <li class="list-group-item orange-bg"><a class="page-link" href="product_data.html"><i class="fa-solid fa-bookmark"></i> Thống kê sản phẩm</a></li>
+                    <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-solid fa-bookmark"></i> Thống kê sản phẩm</a></li>
                     <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-solid fa-users"></i> Quản lý khách hàng</a></li>
-                    <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-solid fa-chart-simple"></i> Thống kê đơn hàng</a></li>
+                    <li class="list-group-item orange-bg"><a class="page-link" href="order_data.html"><i class="fa-solid fa-chart-simple"></i> Thống kê đơn hàng</a></li>
                     <li class="list-group-item orange-bg"><a class="page-link" href=""><i class="fa-regular fa-circle-question"></i> Hỏi đáp</a></li>
                 </ul>
             </div>
             <div class="col-10 mt-5">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-10"><h1>Thống kê đơn hàng</h1></div>
-                        <div class="col-2" id="year_statistic">
-                            <select name="" id="chose_year_statistic">
-                                <option value=""></option>
-                            </select>
-                        </div>
+                    <div class="category_chart">
+                        <canvas id="myPieChart"></canvas>
                     </div>
-                    
-                    <canvas id="cookiechart"></canvas>
                 </div>
             </div>
         </div>
-    
     </div>
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="Statistics/oder.js"></script>
+    <script src="Statistics/product.js"></script>
     <script>
         // Hàm chạy đầu tiên.
          $(document).ready(function () {
-            viewYearstatistic("year_statistic")
-            // display_statistic_order(2020);
+            display_statistic_category();
         });
     </script>
 </body>
