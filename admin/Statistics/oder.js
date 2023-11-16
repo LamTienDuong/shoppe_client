@@ -12,23 +12,12 @@ var myChart = new Chart(ctx, {
     }
 });
 
-
-// function chart_oder(data) {
-//     let cavasElement = document.getElementById("cookiechart");
-//     let config = {
-//         type: "bar",
-//         data: {
-//             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-//             datasets: [{ label: "Thống kê đơn hàng theo tháng", data: data }],
-//             borderWidth: 1
-//         },
-
-//     };
-//     myChart.update();
-// }
 function display_statistic_order(year) {
     debugger
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+        },
         type: 'GET',
         url: `http://localhost:${localStorage.getItem("port")}/oders?year=${year}`,
         success: function (data) {
@@ -55,9 +44,7 @@ function viewYearstatistic(htmlId) {
     $(`#${htmlId}`).html(contentSelect);
     display_statistic_order(currentYear); // Chọn mặc định.
     $("#chose_year_statistic").change(function () {
-        debugger
         display_statistic_order($(this).val());
-        debugger
     });
 }
 

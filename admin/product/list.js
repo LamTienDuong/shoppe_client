@@ -13,6 +13,9 @@ function displayProducts(page) {
     debugger
 
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+        },
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
         url: `http://localhost:${localStorage.getItem('port')}/products?page=${page}&${result_search}&categoryId=${category_id }`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {

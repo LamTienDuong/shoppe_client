@@ -34,6 +34,7 @@ $("#form-add-product").submit(async function (event) {
         headers: {
             Accept: 'application/json', 
             'Content-Type': 'application/json',
+            Authorization: "Bearer " + localStorage.getItem("accessToken")
         },
         type: 'POST', 
         data: JSON.stringify(product), 
