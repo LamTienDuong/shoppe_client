@@ -5,11 +5,11 @@ $('input[name="category"]').change(function() {
     searchByNameProduct();
 });
 
-function searchByNameProduct(page = 0) {
+function searchByNameProduct(page = 0, valueCategoryFooter = "") {
     let selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(checkbox => checkbox.value);
     $.ajax({
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
-        url: `http://localhost:${localStorage.getItem('port')}/products/list?page=` + page + '&title=' + $("#search-name").val() + '&categoryIds=' + selectedCategories.join(",") + '&discount=' + $("#find-discount").val(), // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
+        url: `http://localhost:${localStorage.getItem('port')}/products/list?page=` + page + '&title=' + $("#search-name").val() + '&categoryIds=' + selectedCategories.join(",") + valueCategoryFooter + '&discount=' + $("#find-discount").val(), // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {
             pagination("#pagination", data)
             let tableContent = `<div class="row">`;

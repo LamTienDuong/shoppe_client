@@ -211,6 +211,11 @@ footer .wrapper ul li:last-child .dowload-qr img{
     height: 10px;
 }
 
+.hover-category-footer {
+    color: rgb(238, 77, 45);
+    cursor: pointer;
+}
+
 /* Reponsive */
 @media only screen and (max-width: 768px) {
     header .nav {

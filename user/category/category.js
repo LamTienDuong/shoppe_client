@@ -4,6 +4,7 @@ function selectOptionCategory(htmlId) {
         url: `http://localhost:${localStorage.getItem('port')}/categorys`, // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (categorys) {
           //200-299
+          selectOptionCategoryFooter("#category-footer", categorys)
           let contentSelect = `<li class="list-group-item">
                                   <i class="fa-solid fa-list"></i>
                                   <Strong>Danh mục</Strong>
@@ -26,4 +27,32 @@ function selectOptionCategory(htmlId) {
           //!= 200-299
         },
       });
+}
+
+function selectOptionCategoryFooter(htmlId, data) {
+          let contentSelect = `<ul>
+                                <li>
+                                  Danh mục
+                                </li>`;
+        categorys = data
+        categorys.forEach((category) => {
+        contentSelect += `
+        <li id="item-category" onclick="searchByNameProduct(page = 0, ${category.id})">
+        ${category.name}
+        </li>
+        `;
+        });
+
+        contentSelect += '</ul>'
+
+        $(htmlId).html(contentSelect);
+
+        $(htmlId).on('mouseenter', '#item-category', function() {
+          $(this).addClass('hover-category-footer');
+        });
+      
+        $(htmlId).on('mouseleave', '#item-category', function() {
+          $(this).removeClass('hover-category-footer');
+        });
+        console.log($('#item-category').val());
 }
