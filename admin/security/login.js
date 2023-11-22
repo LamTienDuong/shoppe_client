@@ -10,8 +10,8 @@ $("#form-login").submit(function (event) {
       usernameOrEmail: usernameOrEmail,
       password: password
     };
-  
-    $.ajax({
+
+        $.ajax({
       headers: {
           Accept: 'application/json', 
           'Content-Type': 'application/json', 
@@ -27,7 +27,7 @@ $("#form-login").submit(function (event) {
         data.roleList.forEach(element => {
           roleList.push(element.authority);
         });
-        debugger
+debugger
         localStorage.setItem('roleList', roleList);
         if (localStorage.getItem('roleList').includes('admin')) {
             debugger

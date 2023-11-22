@@ -18,6 +18,9 @@ function searchByNameProduct(page = 0, valueCategoryFooter = "") {
           });
     }
     $.ajax({
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+        },
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
         url: `http://localhost:${localStorage.getItem('port')}/products/list?page=` + page + '&title=' + searchName + '&categoryIds=' + selectedCategories + valueCategoryFooter + '&discount=' + $("#find-discount").val(), // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {
@@ -25,8 +28,8 @@ function searchByNameProduct(page = 0, valueCategoryFooter = "") {
             let tableContent = `<div class="row">`;
             let products = data.content;
             products.forEach((product) => {
-                tableContent += `<div class="col-3" style="width: 200px; margin-right: 16px; margin-bottom: 8px;">
-                                    <a href="#" class="card" id="card" style="width: 200px; height: 300px; background-color: var(--bg-card)">
+                tableContent += `<div class="col-3" onclick="redirect(${product.id})" style="width: 200px; margin-right: 16px; margin-bottom: 8px;">
+                                    <a href="#" class="card" id="card" style="width: 200px; height: 300px;">
                                         <img src="${product.image}" class="card-img-top" alt="...">
                                         <div class="card-body">
                                         <p class="card-title" style="font-size: 18px;">${product.title}</p>
@@ -42,4 +45,9 @@ function searchByNameProduct(page = 0, valueCategoryFooter = "") {
         error: function (error) {
         }
     });
+}
+
+// phần này Dương thêm vô
+function redirect(productId) {
+    window.location.href = `http://127.0.0.1:5500/detail/detail.html?${productId}`;
 }
