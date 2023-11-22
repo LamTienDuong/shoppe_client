@@ -183,6 +183,7 @@ footer .wrapper ul li {
 footer .wrapper ul li a {
     text-decoration: none;
     color: rgb(117, 117, 117);
+    color: var(--text-primary1);
 }
 
 footer .wrapper ul li:first-child {
@@ -190,7 +191,8 @@ footer .wrapper ul li:first-child {
 }
 
 footer .wrapper ul li:first-child {
-    color: black;
+    /* color: black; */
+    color: var(--text-primary);
     font-weight: 700;
 }
 
@@ -209,6 +211,11 @@ footer .copyright {
 footer .wrapper ul li:last-child .dowload-qr img{
     width: 10px;
     height: 10px;
+}
+
+.hover-category-footer {
+    color: rgb(238, 77, 45);
+    cursor: pointer;
 }
 
 /* Reponsive */
@@ -275,4 +282,35 @@ footer .wrapper ul li:last-child .dowload-qr img{
     footer .col-2 ul {
         font-size: 13px;
     }
+}
+
+
+/* dark mode */
+:root {
+    --text-dark: white;
+    --text-dark1: rgb(83, 161, 179);
+    --text-light: black;
+    --bg-dark: rgb(20, 30, 36);
+    --bg-dark-card: rgb(17, 125, 141);
+    --bg-light: white;
+}
+
+[data-theme='dark'] {
+    --text-primary: var(--text-dark);
+    --text-primary1: var(--text-dark1);
+    --bg-primary: var(--bg-dark);
+    --bg-card: var(--bg-dark-card)
+}
+
+[data-theme='light'] {
+    --text-primary: var(--text-light);
+    --bg-primary: var(--bg-light);
+}
+
+main {
+    background-color: var(--bg-primary);
+}
+
+footer {
+    background-color: var(--bg-primary);
 }

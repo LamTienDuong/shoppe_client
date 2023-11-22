@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Shoppe Việt Nam</title>
 </head>
-<body>
+<body data-theme="light">
     <header>
         <div class="container">
             <div class="wrapper-1 d-flex justify-content-between">
@@ -63,6 +63,7 @@
                         <a href="login.html">Đăng nhập</a>
                     </li>
                 </ul>
+                <button style="margin: 30px 0 0 0px" type="button" id="change-dark-mode" class="btn btn-secondary" onclick="changeDarkmode()"><i style="margin-right: 10px;" class="fa-solid fa-sun"></i>Dark mode</button>
             </div>
             
             <div class="wrapper-2 d-flex align-items-center">
@@ -100,7 +101,7 @@
                         </div>
                         <div class="col-10 col-right">
                             <section style="background-color: white; margin-bottom: 16px;">
-                                <div class="row justify-content-between align-items-center">
+                                <div style="background-color: var(--text-primary1);" class="row justify-content-between align-items-center">
                                     <div class="find-price col-6">
                                         <span style="margin-right: 10px; margin-left: 10px;">Sắp xếp theo giá</span>
                                         <select id="find-discount">
@@ -173,19 +174,19 @@
                                 Theo dõi
                             </li>
                             <li>
-                                <i class="fa-brands fa-facebook"></i>
+                                <i class="fa-brands fa-facebook" style="color: var(--text-primary1);"></i>
                                 <a href="#">
                                     Facebook
                                 </a>
                             </li>
                             <li>
-                                <i class="fa-brands fa-instagram"></i>
+                                <i class="fa-brands fa-instagram" style="color: var(--text-primary1);"></i>
                                 <a href="#">
                                     Instagram
                                 </a>
                             </li>
                             <li>
-                                <i class="fa-brands fa-linkedin"></i>
+                                <i class="fa-brands fa-linkedin" style="color: var(--text-primary1);"></i>
                                 <a href="#">
                                     Linkedin
                                 </a>
@@ -193,20 +194,7 @@
                         </ul>
                     </div>
                     <div class="col-2" id="category-footer">
-                        <ul>
-                            <li>
-                                Danh mục
-                            </li>
-                            <li>
-                                <a href="#">Mũ bảo hiểm</a>
-                            </li>
-                            <li>
-                                <a href="#">Phụ kiện</a>
-                            </li>
-                            <li>
-                                <a href="#">Đồ bảo hộ</a>
-                            </li>
-                        </ul>
+                        
                     </div>
                     <div class="col-3">
                         <ul>
@@ -214,11 +202,11 @@
                                 Vào cửa hàng trên ứng dụng
                             </li>
                             <li>
-                                <i class="fa-brands fa-google-play"></i>
+                                <i class="fa-brands fa-google-play" style="color: var(--text-primary1);"></i>
                                 <a href="#">Google play</a>
                             </li>
                             <li>
-                                <i class="fa-brands fa-app-store-ios"></i>
+                                <i class="fa-brands fa-app-store-ios" style="color: var(--text-primary1);"></i>
                                 <a href="#">App store</a>
                             </li>
                         </ul>
@@ -226,7 +214,9 @@
                 </div>
                 <div class="copyright">
                     <p style="text-align: center;">
-                        © 2015 - Bản quyền thuộc về Công ty TNHH Shopee
+                        <span style="color: var(--text-primary1);">
+                            © 2015 - Bản quyền thuộc về Công ty TNHH Shopee
+                        </span>
                     </p>
                 </div>
             </div>
@@ -241,4 +231,5 @@
 <script src="../category/category.js"></script>
 <script src="../products/list.js"></script>
 <script src="../pagination/pagination.js"></script>
+<script src="../script/darkmode.js"></script>
 </html>
