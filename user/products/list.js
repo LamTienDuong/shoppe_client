@@ -5,14 +5,24 @@ $('input[name="category"]').change(function() {
     searchByNameProduct();
 });
 
-function searchByNameProduct(page = 0) {
-    let selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(checkbox => checkbox.value);
+function searchByNameProduct(page = 0, valueCategoryFooter = "") {
+    let selectedCategories = "";
+    let searchName = $("#search-name").val();
+    if (valueCategoryFooter === "") {
+        selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(checkbox => checkbox.value);
+        selectedCategories.join(",")
+    } else {  // ngược lại khi chọn danh mục ở footer thì bỏ hết tất cả các value ở các ô search trước
+        let checkboxes = document.querySelectorAll('input[name="category"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+          });
+    }
     $.ajax({
         headers: {
             Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
         },
         type: 'GET', // Sử dụng phương thức GET để yêu cầu dữ liệu từ server.
-        url: `http://localhost:${localStorage.getItem('port')}/products/list?page=` + page + '&title=' + $("#search-name").val() + '&categoryIds=' + selectedCategories.join(",") + '&discount=' + $("#find-discount").val(), // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
+        url: `http://localhost:${localStorage.getItem('port')}/products/list?page=` + page + '&title=' + searchName + '&categoryIds=' + selectedCategories + valueCategoryFooter + '&discount=' + $("#find-discount").val(), // Đây là địa chỉ của API hoặc trang web bạn muốn tương tác.
         success: function (data) {
             pagination("#pagination", data)
             let tableContent = `<div class="row">`;

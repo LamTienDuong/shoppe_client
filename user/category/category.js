@@ -30,3 +30,31 @@ function selectOptionCategory(htmlId) {
     },
   });
 }
+
+
+function selectOptionCategoryFooter(htmlId, data) {
+  let contentSelect = `<ul>
+                          <li>
+                              Danh mục
+                          </li>`;
+  categorys = data
+  categorys.forEach((category) => {
+      contentSelect += `
+          <li style="color: var(--text-primary1);" id="item-category" onclick="searchByNameProduct(0, ${category.id})">
+              ${category.name}
+          </li>`;
+  });
+
+  contentSelect += '</ul>'
+
+  $(htmlId).html(contentSelect);
+
+  $(htmlId).on('mouseenter', '#item-category', function () {
+      $(this).addClass('hover-category-footer');
+  });
+
+  $(htmlId).on('mouseleave', '#item-category', function () {
+      $(this).removeClass('hover-category-footer');
+  });
+}
+
