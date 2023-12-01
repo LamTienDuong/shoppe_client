@@ -20,7 +20,7 @@
     <header>
         <div class="container">
             <div class="wrapper-1 d-flex justify-content-between">
-                <ul class="menu d-flex" id="menu">
+                <ul class="menu d-flex align-items-center" id="menu">
                     <div id="bars" onclick="hidden1()">
                         <i class="fa-solid fa-bars"></i>
                     </div>
@@ -48,7 +48,7 @@
                     </li>
                 </ul>
 
-                <ul class="nav d-flex">
+                <ul class="nav d-flex align-items-center">
                     <li>
                         <a href="#">
                             <i class="fa-regular fa-bell"></i>
@@ -62,32 +62,41 @@
                         </a>
                     </li>
                     <li>
-                        <a href="register.html">Đăng ký</a>
+                        <!-- <a href="register.html">Đăng ký</a> -->
+                        <label for="" id="userName"></label>
                     </li>
                     <li>|</li>
                     <li>
-                        <a href="login.html">Đăng nhập</a>
+                        <!-- <a href="login.html">Đăng nhập</a> -->
+                        <button id="logout" class="btn btn-success"><i
+                                class="fa-solid fa-right-from-bracket"></i></button>
                     </li>
                 </ul>
+                <!-- <button style="margin: 30px 0 0 0px" type="button" id="change-dark-mode" class="btn btn-secondary" onclick="changeDarkmode()"><i style="margin-right: 10px;" class="fa-solid fa-sun"></i>Dark mode</button> -->
             </div>
 
-            <div class="wrapper-2 d-flex align-items-center">
-                <div class="logo" id="logo">
-                    <a href="#">
-                        <img src="../user/img/270213300_352607336253543_2173618840149640549_n.png" alt="logo shoppe">
-                    </a>
+            <div class="wrapper-2 d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div id="logo" class="logo">
+                        <a href="#">
+                            <img src="../user/img/270213300_352607336253543_2173618840149640549_n.png"
+                                alt="logo shoppe">
+                        </a>
+                    </div>
+                    <div class="fs-1 text-light mx-2">|</div>
+                    <div class="d-flex mx-2">
+                        <div class="fs-1 text-light">Giỏ hàng</div>
+                    </div>
                 </div>
-                <div class="search">
-                    <input id="search-name" type="text" placeholder="Tìm sản phẩm">
-                    <button onclick="searchByNameProduct()" id="search-btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <div class="cart" id="cart">
-                    <a href="#">
-                        <i class="fa-solid fa-cart-shopping fa-2x"></i>
-                    </a>
-                </div>
+                <!-- <div class="mx-5 d-flex align-items-center">
+                    <div class="fs-2 text-light">Giỏ hàng</div>
+                    <div class="fs-2 mx-2 text-light">|</div>
+                    <div class="cart" id="cart">
+                        <a href="#">
+                            <i class="fa-solid fa-cart-shopping fa-2x"></i>
+                        </a>
+                    </div>
+                </div> -->
             </div>
         </div>
     </header>
@@ -142,6 +151,12 @@
                 <button onclick="buyProduct(1)" class="btn btn-primary">Mua hàng</button>
             </div>
         </div>
+        <!-- Xuất hiện khi giỏ hàng trống -->
+        <div id="cart-empty" class="row py-3 my-2 bg-light d-flex justify-content-center">
+            <div class="d-flex justify-content-center fs-2">Giỏ hàng của bạn còn trống</div>
+            <button id="btn-empty" class="btn text-light" style="background-color: #ee4d2d; width: 100px;">Mua
+                ngay</button>
+        </div>
     </main>
 
 
@@ -171,7 +186,7 @@
     </div>
 
 
-    <footer>
+    <footer class="border border-bottom-0">
         <div class="container">
             <div class="wrapper">
                 <div class="row justify-content-between">
@@ -238,13 +253,13 @@
                                 Danh mục
                             </li>
                             <li>
-                                <a href="#">Mũ bảo hiểm</a>
+                                <a href="#">Giày đá bóng</a>
                             </li>
                             <li>
-                                <a href="#">Phụ kiện</a>
+                                <a href="#">Giày leo núi</a>
                             </li>
                             <li>
-                                <a href="#">Đồ bảo hộ</a>
+                                <a href="#">Giày sneakers</a>
                             </li>
                         </ul>
                     </div>
@@ -290,8 +305,21 @@
                 window.location.href = "http://127.0.0.1:5500/order_history/history.html";
             });
 
+            $('#btn-empty').on('click', function () {
+                window.location.href = "http://127.0.0.1:5500/user/html/index.html";
+            });
+
             let userId = await getUserId();
-            debugger
+            let username = await getUserName();
+            $('#userName')
+                .text(username)
+                .css({
+                    "font-size": "16px",
+                    "font-weight": "bold",
+                    "color": "black"
+                });
+            
+
             display(userId);
 
             // nếu all-check box đc chọn thì chọn tất cả các checkbox còn lại
@@ -305,7 +333,6 @@
             });
 
             $('.item-checkbox').change(function () {
-                alert('hello')
                 // Kiểm tra nếu tất cả các checkbox có class "item-checkbox" đều được chọn
                 if ($('.item-checkbox:checked').length === $('.item-checkbox').length) {
                     // Chọn checkbox có id là "all-checkbox"
@@ -352,21 +379,22 @@
         }
 
         function changeCheckbox() {
-
             let totalPrice = 0;
             $('.item-checkbox').each(function () {
                 if ($(this).prop('checked')) {
                     let values = $(this).data('values').split(',');
                     let cartProductId = values[0];
-                    let cartProductPrice = values[1];
-                    totalPrice += parseInt(cartProductPrice);
+                    let cartProductQuantity = values[1];
+                    let cartProductPrice = values[2];
+                    debugger
+                    totalPrice += parseInt(cartProductPrice) * parseInt(cartProductQuantity);
                 } else {
                     // let check = 0;
                     $('#all-checkbox').prop('checked', false);
                 }
             });
             check();
-            $('#totalPrice').text(totalPrice.toLocaleString('de-DE'));
+            $('#totalPrice').text(totalPrice.toLocaleString('de-DE') + 'VNĐ');
 
         }
     </script>

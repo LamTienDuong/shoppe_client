@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="https://shopeeplus.com//upload/images/4321Shopee-logo-512x512.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Shoppe Việt Nam</title>
 </head>
+
 <body data-theme="light">
     <header>
         <div class="container">
             <div class="wrapper-1 d-flex justify-content-between">
-                <ul class="menu d-flex" id="menu">
+                <ul class="menu d-flex align-items-center" id="menu">
                     <div id="bars" onclick="hidden1()">
                         <i class="fa-solid fa-bars"></i>
                     </div>
@@ -42,7 +47,7 @@
                     </li>
                 </ul>
 
-                <ul class="nav d-flex">
+                <ul class="nav d-flex align-items-center">
                     <li>
                         <a href="#">
                             <i class="fa-regular fa-bell"></i>
@@ -56,17 +61,20 @@
                         </a>
                     </li>
                     <li>
-                        <a href="register.html">Đăng ký</a>
+                        <!-- <a href="register.html">Đăng ký</a> -->
+                        <label for="" id="userName"></label>
                     </li>
                     <li>|</li>
                     <li>
-                        <a href="login.html">Đăng nhập</a>
+                        <!-- <a href="login.html">Đăng nhập</a> -->
+                        <button id="logout" class="btn btn-success"><i
+                                class="fa-solid fa-right-from-bracket"></i></button>
                     </li>
                 </ul>
-                <button style="margin: 30px 0 0 0px" type="button" id="change-dark-mode" class="btn btn-secondary" onclick="changeDarkmode()"><i style="margin-right: 10px;" class="fa-solid fa-sun"></i>Dark mode</button>
+                <!-- <button style="margin: 30px 0 0 0px" type="button" id="change-dark-mode" class="btn btn-secondary" onclick="changeDarkmode()"><i style="margin-right: 10px;" class="fa-solid fa-sun"></i>Dark mode</button> -->
             </div>
-            
-            <div class="wrapper-2 d-flex align-items-center">
+
+            <div class="wrapper-2 d-flex align-items-center justify-content-between">
                 <div class="logo">
                     <a href="#">
                         <img src="../img/270213300_352607336253543_2173618840149640549_n.png" alt="logo shoppe">
@@ -78,7 +86,7 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
-                <div class="cart" id="cart">
+                <div class="cart mx-4" id="cart">
                     <a href="#">
                         <i class="fa-solid fa-cart-shopping fa-2x"></i>
                     </a>
@@ -95,44 +103,45 @@
                         <div class="col-2 col-left">
                             <div class="category">
                                 <ul class="list-group" id="category">
-                                    
+
                                 </ul>
                             </div>
                         </div>
                         <div class="col-10 col-right">
                             <section style="background-color: white; margin-bottom: 16px;">
-                                <div style="background-color: var(--text-primary1);" class="row justify-content-between align-items-center">
+                                <div style="background-color: var(--text-primary1);"
+                                    class="row justify-content-between align-items-center">
                                     <div class="find-price col-6">
                                         <span style="margin-right: 10px; margin-left: 10px;">Sắp xếp theo giá</span>
                                         <select id="find-discount">
                                             <option value="">Tất cả</option>
-                                            <option value="lt2">Duới 2 triệu</option>
-                                            <option value="2-5">Từ 2 triệu đến dưới 5 triệu</option>
-                                            <option value="5-10">Từ 5 triệu đến dưới 10 triệu</option>
-                                            <option value="gt10">Trên 10 triệu</option>
+                                            <option value="lt2">Dưới 200.000</option>
+                                            <option value="2-5">Từ 200.000 đến dưới 500.000</option>
+                                            <option value="5-10">Từ 500.000 đến dưới 1 triệu</option>
+                                            <option value="gt10">Trên 1 triệu</option>
                                         </select>
                                     </div>
                                     <!-- Phân trang -->
                                     <nav aria-label="Page navigation example" class="col-6" style="margin-top: 10px;">
                                         <ul class="pagination d-flex justify-content-end" id="pagination">
-                                        
+
                                         </ul>
                                     </nav>
                                 </div>
                             </section>
-                            
+
                             <div class="products" id="list_product">
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-    
+
     </main>
 
-    <footer>
+    <footer class="border border-bottom-0">
         <div class="container">
             <div class="wrapper">
                 <div class="row justify-content-between">
@@ -194,7 +203,20 @@
                         </ul>
                     </div>
                     <div class="col-2" id="category-footer">
-                        
+                        <ul>
+                            <li>
+                                Danh mục
+                            </li>
+                            <li>
+                                <a href="#">Giày đá bóng</a>
+                            </li>
+                            <li>
+                                <a href="#">Giày chạy bộ</a>
+                            </li>
+                            <li>
+                                <a href="#">Giày sneakers</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="col-3">
                         <ul>
@@ -221,22 +243,43 @@
                 </div>
             </div>
         </div>
-            </div>
+        </div>
         </div>
     </footer>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
 <script src="../script/jquery.js"></script>
 <script src="../script/script.js"></script>
 <script src="../category/category.js"></script>
 <script src="../products/list.js"></script>
 <script src="../pagination/pagination.js"></script>
 <script src="../../detail/detail.js"></script>
+<!-- Thêm hàm lấy username xuất hiện trong file cart.js -->
+<script src="../../cart/cart.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#cart').on('click',function() {
+    $(document).ready(async function () {
+        let username = await getUserName();
+        $('#userName')
+            .text(username)
+            .css({
+                "font-size": "16px",
+                "font-weight": "bold",
+                "color": "black"
+            });
+
+        $('#logout').on('click', function () {
+            window.location.href = "http://127.0.0.1:5500/admin/login.html";
+            localStorage.removeItem('accessToken');
+        });
+
+        $('#cart').on('click', function () {
             window.location.href = "http://127.0.0.1:5500/cart/cart.html";
         });
+
+        
     })
 </script>
+
 </html>

@@ -8,7 +8,7 @@ function display(id) {
         success: function (data) {
 
             let content =
-                `<h1 class="text-center mb-3">Chi tiết sản phẩm</h1>
+                `<h1 class="text-center mb-3"></h1>
              <div class="container my-5">
                  <div class="row">
                      <div class="col-md-6 d-flex justify-content-center">
@@ -84,7 +84,26 @@ function getUserId() {
         });
 
     });
-}
+};
+
+function getUserName() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+            },
+            type: 'GET',
+            url: `http://localhost:8080/api/username`,
+            success: function (data) {
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+             }
+        });
+    
+    });
+};
 
 function minus() {
     let quantity = Number($('#input-quantity').val()) - 1;
@@ -95,8 +114,12 @@ function minus() {
 }
 
 function plus() {
+    let total =  Number($('#data-quantity').text());
     let quantity = Number($('#input-quantity').val()) + 1;
-    $('#input-quantity').val(quantity);
+    if (quantity > total) {
+        quantity = total;
+    }
+    $('#input-quantity').val(quantity);  
 }
 
 function testInput(data_quantity) {

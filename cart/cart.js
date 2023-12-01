@@ -6,6 +6,14 @@ function display(userId) {
         type: 'GET',
         url: `http://localhost:8080/cart/${userId}`,
         success: function (data) {
+            if(data.length === 0) {
+                $('#head-content-cart').css('display', 'none');
+                $('#content-cart').css('display', 'none');
+                $('#footer-content-cart').css('display', 'none');
+                return;
+            } else{
+                $('#cart-empty').attr('style', 'display: none !important');
+            }
             
             let contentCart = ``;
 
@@ -14,7 +22,7 @@ function display(userId) {
 
                 contentCart += `<div class="row d-flex">
                 <div class="col-md-1 d-flex align-items-center">
-                    <input  onclick="changeCheckbox()" class="item-checkbox" type="checkbox" data-values="${element.id},${element.quantity}">
+                    <input  onclick="changeCheckbox()" class="item-checkbox" type="checkbox" data-values="${element.id},${element.quantity},${element.product.price}">
                 </div>
                 <div class="col-md-3 d-flex align-items-center">
                     <img id="detail" src="${element.product.image}" alt="${element.product.category.name}" width="100px">
@@ -37,7 +45,8 @@ function display(userId) {
             });
 
             contentCart += `</div>`;
-
+            
+           
             $('#content-cart').html(contentCart);
         },
         error: function (error) {
@@ -65,6 +74,25 @@ function getUserId() {
     
     });
 }
+
+function getUserName() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+            },
+            type: 'GET',
+            url: `http://localhost:8080/api/username`,
+            success: function (data) {
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+             }
+        });
+    
+    });
+};
 
 
 function showDeleteCartProduct(idCartProduct, nameCartProduct) {

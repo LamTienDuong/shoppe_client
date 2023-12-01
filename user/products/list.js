@@ -33,8 +33,8 @@ function searchByNameProduct(page = 0, valueCategoryFooter = "") {
                                         <img src="${product.image}" class="card-img-top" alt="...">
                                         <div class="card-body">
                                         <p class="card-title" style="font-size: 18px;">${product.title}</p>
-                                        <del style="margin-right: 4px;">${product.price}</del>
-                                        <span style="color: rgb(238, 77, 45);">${product.discount}</span> <br>
+                                        <del style="margin-right: 4px;">${product.price.toLocaleString('de-DE')}</del>
+                                        <span style="color: rgb(238, 77, 45);">${product.discount.toLocaleString('de-DE')} VNĐ</span> <br>
                                         </div>
                                     </a>
                                 </div>`
@@ -51,3 +51,5 @@ function searchByNameProduct(page = 0, valueCategoryFooter = "") {
 function redirect(productId) {
     window.location.href = `http://127.0.0.1:5500/detail/detail.html?${productId}`;
 }
+
+

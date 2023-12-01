@@ -120,4 +120,23 @@ async function showDetail(oderId) {
 
         }
     });
-}
+};
+
+function getUserName() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
+            },
+            type: 'GET',
+            url: `http://localhost:8080/api/username`,
+            success: function (data) {
+                resolve(data);
+            },
+            error: function (error) {
+                reject(error);
+             }
+        });
+    
+    });
+};

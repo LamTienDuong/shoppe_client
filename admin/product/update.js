@@ -25,14 +25,14 @@ function comfirmUpdateProduct(id) {
     });
 }
 async function updateProduct() {
-    selectOptionCategory("select_option_update"); 
+    selectOptionCategory("select_option_update");
     let title = $("#update_title").val();
     let price = $("#update_price").val();
     let discount = $("#update_discount").val();
     let quantity = $("#update_quantity").val();
     let files = document.getElementById('update_image').files;
     let description = $("#update_description").val();
-    let categoryid = $("#classIdSelect").val();
+    let categoryid = $("#select_option_update #classIdSelect").val();
     let image;
     debugger;
     if (files.length != 0 && files != undefined) {
@@ -57,10 +57,11 @@ async function updateProduct() {
         headers: {
             Accept: 'application/json', // Đặt kiểu dữ liệu được chấp nhận từ server là JSON.
             'Content-Type': 'application/json', // Đặt kiểu dữ liệu được gửi lên server là JSON.
+            Authorization: "Bearer " + localStorage.getItem("accessToken"), // Đính kèm token trong tiêu đề
         },
-        type: 'PUT', 
-        data: JSON.stringify(product), 
-        url: `http://localhost:${localStorage.getItem('port')}/products/${idUpdate}`, 
+        type: 'PUT',
+        data: JSON.stringify(product),
+        url: `http://localhost:${localStorage.getItem('port')}/products/${idUpdate}`,
         success: function () {
             $("#modal_update_product").modal("hide");
             displayProducts();
